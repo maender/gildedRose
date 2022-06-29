@@ -17,12 +17,16 @@ fun main(args: Array<String>) {
 
     val app = GildedRose(items)
 
-    var days = 2
-    if (args.size > 0) {
-        days = Integer.parseInt(args[0]) + 1
+    var days: Int = 0
+    if (args.isNotEmpty()) {
+        days = try {
+            Integer.parseInt(args[0]) + 1
+        } catch (e: Exception) {
+            2
+        }
     }
 
-    for (i in 0..days - 1) {
+    for (i in 0 until days) {
         println("-------- day $i --------")
         println("name, sellIn, quality")
         for (item in items) {
@@ -31,6 +35,4 @@ fun main(args: Array<String>) {
         println()
         app.updateQuality()
     }
-
-
 }
