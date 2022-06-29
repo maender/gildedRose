@@ -14,6 +14,14 @@ internal class GildedRoseTest {
     }
 
     @Test
+    fun fooIsPrintedCorrectly() {
+        val items = arrayOf<Item>(Item("foo", 1, 0))
+        val app = GildedRose(items)
+        app.updateQuality()
+        assertEquals("foo, 0, 0", app.items[0].toString())
+    }
+
+    @Test
     fun fooSellingoesfrom0ToMinus1AndQualityStaysTo0() {
         val items = arrayOf<Item>(Item("foo", 0, 0))
         val app = GildedRose(items)
