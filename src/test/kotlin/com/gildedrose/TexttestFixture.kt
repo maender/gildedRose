@@ -5,15 +5,16 @@ fun main(args: Array<String>) {
     println("OMGHAI!")
 
     val items = arrayOf(
-        Item("+5 Dexterity Vest", 10, 20), //
-        Item("Aged Brie", 2, 0, true), //
-        Item("Elixir of the Mongoose", 5, 7), //
-        Item("Sulfuras, Hand of Ragnaros", 0, 80, true), //
-        Item("Sulfuras, Hand of Ragnaros", -1, 80, true),
-        Item("Backstage passes to a TAFKAL80ETC concert", 15, 20, true),
-        Item("Backstage passes to a TAFKAL80ETC concert", 10, 49, true),
-        Item("Backstage passes to a TAFKAL80ETC concert", 5, 49, true),
-        Item("Conjured Mana Cake", 3, 6)
+        Other("+5 Dexterity Vest", 10, 20), //
+        AgedBrie(2, 0), //
+        Other("Elixir of the Mongoose", 5, 7), //
+        Sulfuras(0, 80), //
+        Sulfuras(-1, 80), //
+        Backstage(15, 20),
+        Backstage(10, 49),
+        Backstage(5, 49),
+        Backstage(3, 6),
+        Other("Conjured Mana Cake", 3, 6)
     )
 
     val app = GildedRose(items)

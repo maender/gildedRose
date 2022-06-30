@@ -7,7 +7,7 @@ internal class GildedRoseTest {
 
     @Test
     fun foo() {
-        val items = arrayOf<Item>(Item("foo", 0, 0))
+        val items = arrayOf<Item>(Other("foo", 0, 0))
         val app = GildedRose(items)
         app.updateQuality()
         assertEquals("foo", app.items[0].name)
@@ -15,7 +15,7 @@ internal class GildedRoseTest {
 
     @Test
     fun fooIsPrintedCorrectly() {
-        val items = arrayOf<Item>(Item("foo", 1, 0))
+        val items = arrayOf<Item>(Other("foo", 1, 0))
         val app = GildedRose(items)
         app.updateQuality()
         assertEquals("foo, 0, 0", app.items[0].toString())
@@ -23,7 +23,7 @@ internal class GildedRoseTest {
 
     @Test
     fun fooSellingoesfrom0ToMinus1AndQualityStaysTo0() {
-        val items = arrayOf<Item>(Item("foo", 0, 0))
+        val items = arrayOf<Item>(Other("foo", 0, 0))
         val app = GildedRose(items)
         app.updateQuality()
         assertEquals(-1, app.items[0].sellIn)
@@ -32,7 +32,7 @@ internal class GildedRoseTest {
 
     @Test
     fun AgedBrieAndQualitylLessThanFiftyAndSellingEquals0() {
-        val items = arrayOf<Item>(Item("Aged Brie", 0, 10, true))
+        val items = arrayOf<Item>(AgedBrie(0, 10))
         val app = GildedRose(items)
         app.updateQuality()
         assertEquals(-1, app.items[0].sellIn)
@@ -41,7 +41,7 @@ internal class GildedRoseTest {
 
     @Test
     fun AgedBrieAndQualitylLessThanFiftyAndSellingGreatherThan0() {
-        val items = arrayOf<Item>(Item("Aged Brie", 3, 10, true))
+        val items = arrayOf<Item>(AgedBrie(3, 10))
         val app = GildedRose(items)
         app.updateQuality()
         assertEquals(2, app.items[0].sellIn)
@@ -50,7 +50,7 @@ internal class GildedRoseTest {
 
     @Test
     fun AgedBrieAndQualitylGreatherThanFiftyAndSellingGreatherThan0() {
-        val items = arrayOf<Item>(Item("Aged Brie", 3, 55, true))
+        val items = arrayOf<Item>(AgedBrie(3, 55))
         val app = GildedRose(items)
         app.updateQuality()
         assertEquals(2, app.items[0].sellIn)
@@ -59,7 +59,7 @@ internal class GildedRoseTest {
 
     @Test
     fun BackstageAndQualitylLessThanFiftySellingGreatherthanEleven() {
-        val items = arrayOf<Item>(Item("Backstage passes to a TAFKAL80ETC concert", 15, 15, true))
+        val items = arrayOf<Item>(Backstage(15, 15))
         val app = GildedRose(items)
         app.updateQuality()
         assertEquals(14, app.items[0].sellIn)
@@ -68,7 +68,7 @@ internal class GildedRoseTest {
 
     @Test
     fun BackstageAndQualitylLessThanFiftySellingLessThanEleven() {
-        val items = arrayOf<Item>(Item("Backstage passes to a TAFKAL80ETC concert", 10, 15, true))
+        val items = arrayOf<Item>(Backstage(10, 15))
         val app = GildedRose(items)
         app.updateQuality()
         assertEquals(9, app.items[0].sellIn)
@@ -77,7 +77,7 @@ internal class GildedRoseTest {
 
     @Test
     fun BackstageAndQualitylLessThanFiftySellingLessThanSix() {
-        val items = arrayOf<Item>(Item("Backstage passes to a TAFKAL80ETC concert", 5, 15, true))
+        val items = arrayOf<Item>(Backstage(5, 15))
         val app = GildedRose(items)
         app.updateQuality()
         assertEquals(4, app.items[0].sellIn)
@@ -86,7 +86,7 @@ internal class GildedRoseTest {
 
     @Test
     fun BackstageAndQualitylLessThanFiftySellingToEqual0() {
-        val items = arrayOf<Item>(Item("Backstage passes to a TAFKAL80ETC concert", 0, 15, true))
+        val items = arrayOf<Item>(Backstage(0, 15))
         val app = GildedRose(items)
         app.updateQuality()
         assertEquals(-1, app.items[0].sellIn)
@@ -95,7 +95,7 @@ internal class GildedRoseTest {
 
     @Test
     fun FooQualitylLessThanFiftySellingToEqual0() {
-        val items = arrayOf<Item>(Item("foo", 0, 15))
+        val items = arrayOf<Item>(Other("foo", 0, 15))
         val app = GildedRose(items)
         app.updateQuality()
         assertEquals(-1, app.items[0].sellIn)
@@ -104,7 +104,7 @@ internal class GildedRoseTest {
 
     @Test
     fun IfSulfurasThanNothingHappend() {
-        val items = arrayOf<Item>(Item("Sulfuras, Hand of Ragnaros", 0, 0, true))
+        val items = arrayOf<Item>(Sulfuras(0, 0))
         val app = GildedRose(items)
         app.updateQuality()
         assertEquals(0, app.items[0].sellIn)
@@ -113,7 +113,7 @@ internal class GildedRoseTest {
 
     @Test
     fun conjuredItemDecreaseTwicePerDay() {
-        val items = arrayOf<Item>(Item("Conjured Mana Cake", 3, 6))
+        val items = arrayOf<Item>(Other("Conjured Mana Cake", 3, 6))
         val app = GildedRose(items)
         app.updateQuality()
         assertEquals(2, app.items[0].sellIn)
@@ -122,7 +122,7 @@ internal class GildedRoseTest {
 
     @Test
     fun itemQualityIsNeverLessThan0() {
-        val items = arrayOf<Item>(Item("Conjured Mana Cake", 0, 1))
+        val items = arrayOf<Item>(Other("Conjured Mana Cake", 0, 1))
         val app = GildedRose(items)
         app.updateQuality()
         assertEquals(-1, app.items[0].sellIn)
@@ -131,7 +131,7 @@ internal class GildedRoseTest {
 
     @Test
     fun itemQuelityIsNeverAbove50() {
-        val items = arrayOf<Item>(Item("Backstage passes to a TAFKAL80ETC concert", 2, 48, true))
+        val items = arrayOf<Item>(Backstage(2, 48))
         val app = GildedRose(items)
         app.updateQuality()
         assertEquals(1, app.items[0].sellIn)
